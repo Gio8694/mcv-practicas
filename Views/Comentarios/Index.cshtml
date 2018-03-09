@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Noticiero.Models.Comentario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Noticias.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TituloComen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContenidoComen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutorComen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaComen)
+            </th>
+            <th>Opciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Noticias.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TituloComen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContenidoComen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AutorComen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaComen)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ComentarioID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ComentarioID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ComentarioID })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

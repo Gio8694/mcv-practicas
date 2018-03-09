@@ -1,0 +1,58 @@
+﻿@model Noticiero.Models.Comentario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comentario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Noticias.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Noticias.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloComen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloComen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContenidoComen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContenidoComen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AutorComen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutorComen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaComen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaComen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ComentarioID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
