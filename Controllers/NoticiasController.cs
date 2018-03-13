@@ -22,6 +22,20 @@ namespace Noticiero.Controllers
         }
 
         // GET: Noticias/Details/5
+        public ActionResult DetalleNoticia(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Noticia noticia = db.Noticias.Find(id);
+            if (noticia == null)
+            {
+                return HttpNotFound();
+            }
+            return View(noticia);
+        }
+        // GET: Noticias/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
