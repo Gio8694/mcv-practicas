@@ -21,7 +21,7 @@ namespace Noticiero.Controllers
             return View(noticias.ToList());
         }
 
-        // GET: Noticias/Details/5
+        // GET: Noticias/DetalleNoticia/5
         public ActionResult DetalleNoticia(int? id)
         {
             if (id == null)
@@ -29,12 +29,18 @@ namespace Noticiero.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Noticia noticia = db.Noticias.Find(id);
+
+            var Infocomentario = db.Database.SqlQuery<Comentario>(@"Select ComentarioID,NoticiaID,TituloComen,ContenidoComen,AutorComen,FechaComen 
+                                                                    From Comentarios Where NoticiaID=" + id).ToList();
+
             if (noticia == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.comentari = Infocomentario;
             return View(noticia);
         }
+
         // GET: Noticias/Details/5
         public ActionResult Details(int? id)
         {

@@ -13,7 +13,7 @@ namespace Noticiero.Controllers
         public ActionResult Index()
         {
             var InfoEntradas = db.Database.SqlQuery<NoticiasXClasif>(@"Select B.NoticiaID,B.ClasifID,B.Titulo,B.Contenido,B.Autor,B.FechaNoticia,B.Foto,A.Nombre 
-                                                                    From Clasifs A Inner Join Noticias B On (A.ClasifID=B.ClasifID) order by FechaNoticia Desc").Take(10).ToList();
+                                                                    From Clasifs A Inner Join Noticias B On (A.ClasifID=B.ClasifID) order by ClasifID Desc, FechaNoticia Desc").ToList();
             return View(InfoEntradas);
         }
 

@@ -4,71 +4,68 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3>Noticia completa</h3>
+<hr />
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+        <img src="~/Imagenes/@Html.DisplayFor(model => model.Foto)" style="height:100%; width:70%; " />
+    </div>
+</div> 
 
-<div>
-    <h4>Noticia</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Clasifs.Nombre)
-        </dt>
+<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Clasifs.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contenido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contenido)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Autor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Autor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaNoticia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaNoticia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <blockquote><p class="text-primary" style="font-size:25px;"><strong>@Html.DisplayFor(model => model.Titulo)</strong></p></blockquote>
+    </div>
+    <div class="col-lg-1"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NoticiaID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <p style="text-align:justify; font-size:15px;">@Html.DisplayFor(model => model.Contenido)</p>
+    </div>
+    <div class="col-lg-1"></div>
+</div>  
+
+<div class="row">
+    <blockquote class="pull-right">
+        <small>Autor: <cite title="Autor">@Html.DisplayFor(model => model.Autor)</cite></small>
+        <small>@Html.DisplayFor(model => model.FechaNoticia)</small>
+    </blockquote>
+</div>
+    
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8"><h3><strong>Comentarios</strong></h3></div>
+    <div class="col-lg-2"></div>
+</div>
+
+@foreach (var item in ViewBag.comentari)
+{
+    <div class="row table-responsive" style="margin-top:5px; ">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="border-style:groove; border-radius:5px 5px; background:#f5f3f3">
+            <span class="text-primary" style="font-size:15px; margin:0;"><strong>Titulo Comentario: @item.TituloComen</strong></span>
+            <span style="float:right;">@item.FechaComen</span>
+             <hr style="border-color:darkslategrey"/>
+            <p style="text-align:justify; margin:0 8px">@item.ContenidoComen</p>
+            <blockquote class="pull-right">
+                <small>Autor: <cite title="Autor">@item.AutorComen</cite></small>
+            </blockquote>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+}
+
+<div class="row" style="margin:auto;">
+    <p>
+        @Html.ActionLink("Regresar", "Index", "Home")
+    </p>
+</div>
+
+
+
