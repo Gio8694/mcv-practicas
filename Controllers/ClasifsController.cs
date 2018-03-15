@@ -10,6 +10,7 @@ using Noticiero.Models;
 
 namespace Noticiero.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ClasifsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

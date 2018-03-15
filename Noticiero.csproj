@@ -290,6 +290,7 @@
     <Content Include="Views\Comentarios\Edit.cshtml" />
     <Content Include="Views\Comentarios\Index.cshtml" />
     <Content Include="Views\Noticias\DetalleNoticia.cshtml" />
+    <Content Include="Views\Comentarios\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

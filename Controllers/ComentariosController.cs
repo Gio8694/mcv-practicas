@@ -15,6 +15,7 @@ namespace Noticiero.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comentarios
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             var comentarios = db.Comentarios.Include(c => c.Noticias);
@@ -22,6 +23,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Comentarios/Details/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +38,38 @@ namespace Noticiero.Controllers
             return View(comentario);
         }
 
+        // GET: Comentarios/Crear
+        [Authorize(Roles = "Usuario")]
+        public ActionResult Crear(int? id)
+        {
+            List<Noticia> noticia = new List<Noticia>();
+            noticia = db.Noticias.Where(x => x.NoticiaID == id).ToList();
+            ViewBag.noticia = noticia;
+            //ViewBag.NoticiaID = new SelectList(db.Noticias, "NoticiaID", "Titulo");
+            ViewBag.idnoticia = id;
+            return View();
+        }
+
+        // POST: Comentarios/Crear
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Crear([Bind(Include = "ComentarioID,NoticiaID,TituloComen,ContenidoComen,AutorComen")] Comentario comentario)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Comentarios.Add(comentario);
+                db.SaveChanges();
+                return RedirectToAction("DetalleNoticia","Noticias", new { id = comentario.NoticiaID });
+            }
+
+            ViewBag.NoticiaID = new SelectList(db.Noticias, "NoticiaID", "Titulo", comentario.NoticiaID);
+            return View(comentario);
+        }
+
         // GET: Comentarios/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             ViewBag.NoticiaID = new SelectList(db.Noticias, "NoticiaID", "Titulo");
@@ -62,6 +95,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Comentarios/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +129,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Comentarios/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

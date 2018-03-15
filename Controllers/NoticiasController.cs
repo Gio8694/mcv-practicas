@@ -15,6 +15,7 @@ namespace Noticiero.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Noticias
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             var noticias = db.Noticias.Include(n => n.Clasifs);
@@ -42,6 +43,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Noticias/Details/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -57,6 +59,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Noticias/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             ViewBag.ClasifID = new SelectList(db.Clasifs, "ClasifID", "Nombre");
@@ -82,6 +85,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Noticias/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -115,6 +119,7 @@ namespace Noticiero.Controllers
         }
 
         // GET: Noticias/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
